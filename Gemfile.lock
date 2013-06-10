@@ -206,6 +206,7 @@ DEPENDENCIES
   guard-spork
   jquery-rails
   meta_request
+  nokogiri
   pg
   rails (= 3.2.13)
   rb-fsevent
