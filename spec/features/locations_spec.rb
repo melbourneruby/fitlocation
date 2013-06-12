@@ -1,8 +1,7 @@
 require 'spec_helper'
 
-describe "Locations" do
-  describe "GET /locations" do
-    it "displays locations"
+feature "Locations" do
+  scenario "displays locations" do
     visit locations_path
     page.should have_content 'location match'
   end
