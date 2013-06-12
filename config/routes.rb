@@ -1,5 +1,5 @@
 MelbourneRuby::Application.routes.draw do
-  get "locations/index"
+  # get "locations/index"
 
   resources :locations
   # The priority is based upon order of creation:
