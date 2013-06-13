@@ -1,11 +1,12 @@
 <h1>Locations#index</h1>
 <%= render 'form' %>
 
-<% @locations.each do |location| %>
-  <li><%= location.longitude %></li>
-  <li><%= location.latitude %></li>
-  <li><%= location.category %></li>
-  <li id="location_<%=location.id%>"><%= link_to 'edit', edit_location_path(location) %> | <%= link_to 'delete', location, method: 'delete' %>  </li>
-
-<% end %>
+<ul>
+  <% @locations.each do |location| %>
+    <li>Longitude: <%= location.longitude %></li>
+    <li>Latitide: <%= location.latitude %></li>
+    <li>Category: <%= location.category %></li>
+    <li id="location_<%=location.id%>"><%= link_to 'edit', edit_location_path(location) %> | <%= link_to 'delete', location, method: 'delete' %>  </li>
+  <% end %>
+</ul>
   
