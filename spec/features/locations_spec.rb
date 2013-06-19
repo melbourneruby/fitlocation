@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Locations" do
   before do
-     @location = Location.create longitude:-37.7553, latitude:144.9173, category:'pull up bar'
+     @location = Location.create address:'114 Glass Street', category:'pull up bar'
   end
   
   describe "GET /locations" do
@@ -13,8 +13,7 @@ describe "Locations" do
     
     it "creates a new location" do
       visit locations_path
-      fill_in 'location_longitude', with: -38.686868
-      fill_in 'location_latitude', with: 138.232323
+      fill_in 'location_address', with: '1/114 Glass Street'
       fill_in 'location_category', with: 'chin up bar'
       click_button 'Create Location'
       
@@ -31,19 +30,20 @@ describe "Locations" do
       click_link "edit"
       current_path.should == edit_location_path(@location)
       find_field('location_category').value.should == 'pull up bar'
-      fill_in 'location_longitude', with: -222.222222
-      fill_in 'location_latitude', with: 444.444444
+      fill_in 'location_address', with: '580 Burke Street'
       fill_in 'location_category', with: 'no bar'
       click_button 'Update Location'
       
       page.should have_content 'no bar'
+      page.should have_content '580 Burke Street'
+      
     end
     
     it "should not update an empty field" do
       visit locations_path
       click_link 'edit'
       
-      fill_in 'location_longitude', with: ""
+      fill_in 'location_address', with: ""
       click_button 'Update Location'
       
       current_path.should == edit_location_path(@location)
@@ -59,4 +59,17 @@ describe "Locations" do
       delete_link.click_link 'delete'
     end
   end
+  
+  describe "GET /location" do
+    it "should display a location" do
+      visit locations_path
+      click_link '114 Glass Street'
+      
+      page.should have_content '114 Glass Street'
+      page.should have_content 'Longitude:'
+      page.should have_content 'Latitude:'
+      page.should have_content 'Category:'
+    end
+  end
+  
 end
