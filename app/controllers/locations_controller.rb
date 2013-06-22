@@ -6,6 +6,7 @@ class LocationsController < ApplicationController
   end
   
   def create
+    # binding.pry
     @location = Location.new params[:location]
     if @location.save
       redirect_to locations_path, notice: 'location created successfully'

@@ -28,6 +28,8 @@ group :development, :test do
 	gem 'guard-rspec'
 	gem 'guard-spork'
 	gem 'spork'
+	gem 'pry'
+	gem 'pry-nav'
 end
 
 group :development do
