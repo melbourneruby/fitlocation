@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'foreman'
 gem 'thin'
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -40,6 +41,8 @@ group :test do
 	gem 'rb-fsevent', :require => false
 	gem 'growl'
 	gem 'factory_girl_rails'
+	gem 'database_cleaner'
+	gem 'email_spec'
 end
 
 gem 'jquery-rails'
