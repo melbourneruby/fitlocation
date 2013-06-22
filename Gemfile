@@ -10,6 +10,7 @@ gem 'pg'
 gem 'foreman'
 gem 'thin'
 gem 'gmaps4rails'
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -44,7 +45,12 @@ group :test do
 	gem 'rb-fsevent', :require => false
 	gem 'growl'
 	gem 'factory_girl_rails'
+<<<<<<< HEAD
 	gem 'launchy'
+=======
+	gem 'database_cleaner'
+	gem 'email_spec'
+>>>>>>> Add devise to gems, implement database_cleaner in rspec_helper
 end
 
 gem 'jquery-rails'
