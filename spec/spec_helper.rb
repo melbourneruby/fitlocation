@@ -60,7 +60,7 @@ Spork.each_run do
     config.use_transactional_fixtures = true
 
     config.before(:suite) do
-      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.strategy = :truncation
       DatabaseCleaner.clean_with(:truncation)
     end
 
@@ -71,6 +71,12 @@ Spork.each_run do
     config.after(:each) do
       DatabaseCleaner.clean
     end
+  end
+end
+
+def model_has_columns(model_instance, *columns)
+  columns.each do |column|
+    model_instance.should respond_to(column)
   end
 end
 

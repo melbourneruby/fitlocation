@@ -31,18 +31,21 @@ end
 
 group :development do
 	gem 'annotate'
-   gem 'better_errors'
-   gem 'binding_of_caller'
-   gem 'meta_request'
+    gem 'better_errors'
+    gem 'binding_of_caller'
+    gem 'meta_request'
+    gem 'pry'
+    gem 'pry-nav'
 end
 
 group :test do
 	gem 'capybara'
 	gem 'rb-fsevent', :require => false
 	gem 'growl'
-	gem 'factory_girl_rails'
+	gem 'fabrication'
 	gem 'database_cleaner'
 	gem 'email_spec'
+	gem 'shoulda-matchers'
 end
 
 gem 'jquery-rails'
