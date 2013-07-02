@@ -3,6 +3,10 @@ class LocationsController < ApplicationController
     @json = Location.all.to_gmaps4rails
     @location = Location.new
     @locations = Location.all
+    
+    respond_to do |format|
+      format.html
+    end
   end
   
   def create
@@ -11,7 +15,9 @@ class LocationsController < ApplicationController
     if @location.save
       redirect_to locations_path, notice: 'location created successfully'
     else
-      redirect_to locations_path, notice: 'location creation failed'
+      flash[:error] = @location.errors.full_messages 
+      @locations = Location.all
+      render 'index'
     end
   end
   
@@ -20,11 +26,12 @@ class LocationsController < ApplicationController
   end
   
   def update
-    location = Location.find params[:id]
-    if location.update_attributes params[:location]
+    @location = Location.find params[:id]
+    if @location.update_attributes params[:location]
       redirect_to locations_path, notice: "Successfully Updated Location"
     else
-      redirect_to :back, notice: "Error Updating Empty Fields"
+      flash[:error] = @location.errors.full_messages 
+      render 'edit'
     end
   end
   
