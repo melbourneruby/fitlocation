@@ -1,7 +1,8 @@
 class Location < ActiveRecord::Base
   attr_accessible :latitude, :longitude, :category, :address
   
-  validates_presence_of :category, :address
+  validates_presence_of :category
+  validates_presence_of :address, unless: :latitude? && :longitude?
   
   acts_as_gmappable :process_geocoding => :geocode?
   
