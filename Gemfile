@@ -5,9 +5,11 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'nokogiri'
 gem 'pg'
 gem 'foreman'
 gem 'thin'
+gem 'gmaps4rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,6 +28,8 @@ group :development, :test do
 	gem 'guard-rspec'
 	gem 'guard-spork'
 	gem 'spork'
+	gem 'pry'
+	gem 'pry-nav'
 end
 
 group :development do
@@ -40,6 +44,7 @@ group :test do
 	gem 'rb-fsevent', :require => false
 	gem 'growl'
 	gem 'factory_girl_rails'
+	gem 'launchy'
 end
 
 gem 'jquery-rails'

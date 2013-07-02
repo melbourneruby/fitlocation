@@ -22,3 +22,8 @@
 .DS_Store
 .idea
 .env
+
+#Ignore .gemset and .ruby-version
+
+.ruby-version
+.ruby-gemset
