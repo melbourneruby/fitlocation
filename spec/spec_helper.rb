@@ -12,6 +12,9 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
+  require 'capybara/rspec'
+  require 'capybara/rails'
+  
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -53,7 +56,7 @@ Spork.each_run do
   Dir["#{Rails.root}/app/**/*.rb"].each {|f| load f}
   Dir["#{Rails.root}/lib/**/*.rb"].each {|f| load f}
 
-  Rspec.configure do |config|
+  RSpec.configure do |config|
     config.mock_with :rspec
 
     config.use_transactional_fixtures = true

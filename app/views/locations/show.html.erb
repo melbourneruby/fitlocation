@@ -1,0 +1,16 @@
+<h1><%= @location.address%></h1>
+
+<li>Longitude: <%= @location.longitude %></li>
+<li>Latitude: <%= @location.latitude %></li>
+<li>Category: <%= @location.category %></li>
+<li id="location_<%=@location.id%>"><%= link_to 'edit', edit_location_path(@location) %> | <%= link_to 'delete', @location, method: 'delete' %> | <%= link_to 'back', :back %> </li>
+
+<br/><br/>
+
+
+
+<%= gmaps({
+  "map_options" => {"auto_zoom" => false,"zoom" => 18 },
+  "markers"     => {"data" => @json }
+ })
+%>
