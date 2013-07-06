@@ -74,7 +74,7 @@ Spork.each_run do
   end
 end
 
-def model_has_columns(model_instance, *columns)
+def ensure_model_has_columns(model_instance, *columns)
   columns.each do |column|
     model_instance.should respond_to(column)
   end
