@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe "Locations" do
@@ -73,3 +74,4 @@ describe "Locations" do
   end
   
 end
+=end
