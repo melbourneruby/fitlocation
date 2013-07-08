@@ -11,8 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+ActiveRecord::Schema.define(:version => 20130703075020) do
 
-ActiveRecord::Schema.define(:version => 20130613102955) do
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "categories", ["name"], :name => "index_categories_on_name"
+
+  create_table "categorizations", :force => true do |t|
+    t.integer  "location_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "categorizations", ["category_id"], :name => "index_categorizations_on_category_id"
+  add_index "categorizations", ["location_id", "category_id"], :name => "index_categorizations_on_location_id_and_category_id", :unique => true
+  add_index "categorizations", ["location_id"], :name => "index_categorizations_on_location_id"
 
   create_table "locations", :force => true do |t|
     t.decimal  "longitude",  :precision => 10, :scale => 6
@@ -24,9 +42,6 @@ ActiveRecord::Schema.define(:version => 20130613102955) do
     t.boolean  "gmaps"
   end
 
-ActiveRecord::Schema.define(:version => 20130622061133) do
-
-  
   create_table "users", :force => true do |t|
     t.string   "name",                   :default => "", :null => false
     t.string   "email",                  :default => "", :null => false
