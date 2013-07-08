@@ -1,7 +1,10 @@
 MelbourneRuby::Application.routes.draw do
-  # get "locations/index"
 
+  root to: 'pages#index'
   resources :locations
+  devise_for :users
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

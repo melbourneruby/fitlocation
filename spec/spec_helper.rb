@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'database_cleaner'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -60,6 +61,25 @@ Spork.each_run do
     config.mock_with :rspec
 
     config.use_transactional_fixtures = true
+
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.clean_with(:truncation)
+    end
+
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
+  end
+end
+
+def model_has_columns(model_instance, *columns)
+  columns.each do |column|
+    model_instance.should respond_to(column)
   end
 end
 
