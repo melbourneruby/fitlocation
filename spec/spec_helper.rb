@@ -10,6 +10,7 @@ Spork.prefork do
   # need to restart spork for it take effect.
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
+  ENV["SECRET_TOKEN"] ||= 'testingsecretkeyandsomepaddingtomeetthethirtycharacterrequirement'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
@@ -19,6 +20,7 @@ Spork.prefork do
   Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
   RSpec.configure do |config|
+    config.include Devise::TestHelpers, type: :controller
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -78,6 +80,15 @@ def ensure_model_has_columns(model_instance, *columns)
   columns.each do |column|
     model_instance.should respond_to(column)
   end
+end
+
+def login(user)
+  visit new_user_session_path
+
+  fill_in 'user[email]', with: user.email
+  fill_in 'user[password]', with: user.password
+
+  click_button 'Sign in'
 end
 
 # --- Instructions ---
